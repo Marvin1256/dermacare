@@ -1,0 +1,153 @@
+{
+  "entities": {
+    "Account": {
+      "title": "Account",
+      "description": "User account for patients, medical specialists, and administrators",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique account identifier" },
+        "email": { "type": "string", "description": "User email address" },
+        "passwordHash": { "type": "string", "description": "Account credential or hash" },
+        "role": { "type": "string", "enum": ["patient", "specialist", "admin"], "description": "System access role" },
+        "name": { "type": "string", "description": "Full display name" },
+        "phone": { "type": "string", "description": "Phone number" },
+        "dob": { "type": "string", "description": "Date of birth" },
+        "status": { "type": "string", "description": "Account status e.g. Approved, Pending, Active" },
+        "providerType": { "type": "string", "description": "Provider classification" },
+        "specialization": { "type": "string", "description": "Clinical medical specialization" },
+        "registrationNumber": { "type": "string", "description": "Medical license or registration number" },
+        "licensingAuthority": { "type": "string", "description": "Medical board issuing authority" },
+        "experience": { "type": "string", "description": "Years of experience" },
+        "address": { "type": "string", "description": "Practice clinic or hospital address" },
+        "consultationHours": { "type": "string", "description": "Daily consultation hours" },
+        "consultationType": { "type": "string", "description": "Consultation mode e.g. Online, Both, Physical" },
+        "bio": { "type": "string", "description": "Professional practitioner biography" },
+        "profilePic": { "type": "string", "description": "Avatar or profile photo URL" },
+        "createdAt": { "type": "string", "description": "Creation ISO timestamp" }
+      },
+      "required": ["id", "email", "role", "name"]
+    },
+    "Case": {
+      "title": "Case",
+      "description": "Clinical dermatology case and triage submission",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Case identifier" },
+        "patientId": { "type": "string", "description": "Patient user ID" },
+        "patientName": { "type": "string", "description": "Patient full name" },
+        "patientNumber": { "type": "string", "description": "Patient reference number" },
+        "specialistId": { "type": "string", "description": "Assigned doctor ID" },
+        "specialistName": { "type": "string", "description": "Assigned doctor name" },
+        "status": { "type": "string", "description": "Case diagnostic status" },
+        "createdAt": { "type": "string", "description": "Submission ISO timestamp" },
+        "mediaUrl": { "type": "string", "description": "Dermatology lesion scan or photo URL" },
+        "symptoms": { "type": "string", "description": "Reported cutaneous symptoms" },
+        "transcription": { "type": "string", "description": "Audio symptoms transcription" },
+        "aiTriageSummary": { "type": "string", "description": "AI pre-screening triage hypothesis" },
+        "diagnosisReport": { "type": "object", "description": "Specialist clinical diagnosis and prescription" }
+      },
+      "required": ["id", "patientId", "status", "createdAt"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Consultation booking and calendar event",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Appointment identifier" },
+        "patientId": { "type": "string", "description": "Patient user ID" },
+        "patientName": { "type": "string", "description": "Patient full name" },
+        "patientPhone": { "type": "string", "description": "Contact phone" },
+        "specialistId": { "type": "string", "description": "Specialist identifier" },
+        "specialistName": { "type": "string", "description": "Specialist full name" },
+        "providerType": { "type": "string", "description": "Provider type e.g. doctor, clinic, hospital" },
+        "providerName": { "type": "string", "description": "Provider name" },
+        "date": { "type": "string", "description": "Scheduled date YYYY-MM-DD" },
+        "time": { "type": "string", "description": "Scheduled time slot" },
+        "type": { "type": "string", "description": "Consultation type Online or Physical" },
+        "status": { "type": "string", "description": "Status Pending, Accepted, Completed, Rescheduled, Declined" },
+        "lesionImage": { "type": "string", "description": "Lesion thumbnail or reference" },
+        "symptoms": { "type": "string", "description": "Case symptoms" },
+        "rescheduleReason": { "type": "string", "description": "Reason for rescheduling" },
+        "proposedDate": { "type": "string", "description": "Doctor proposed reschedule date" },
+        "proposedTime": { "type": "string", "description": "Doctor proposed reschedule time" },
+        "completionNotes": { "type": "string", "description": "Outcome notes when completed" },
+        "patientReminders": { "type": "object", "description": "Active patient reminder toggles (12h, 1h, 30m)" },
+        "specialistReminders": { "type": "object", "description": "Active specialist reminder toggles (30m, 5m)" }
+      },
+      "required": ["id", "patientId", "date", "time", "status"]
+    },
+    "AdminSpecialistChat": {
+      "title": "AdminSpecialistChat",
+      "description": "Direct communication message between admin and clinical specialist",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Message identifier" },
+        "specialistId": { "type": "string", "description": "Specialist ID" },
+        "specialistName": { "type": "string", "description": "Specialist name" },
+        "specialistEmail": { "type": "string", "description": "Specialist email" },
+        "role": { "type": "string", "enum": ["admin", "specialist"], "description": "Message sender role" },
+        "senderName": { "type": "string", "description": "Sender display name" },
+        "content": { "type": "string", "description": "Message body" },
+        "time": { "type": "string", "description": "Time string" },
+        "date": { "type": "string", "description": "Date string" },
+        "timestamp": { "type": "string", "description": "ISO timestamp" },
+        "readByAdmin": { "type": "boolean", "description": "Read status by admin" },
+        "readBySpecialist": { "type": "boolean", "description": "Read status by specialist" }
+      },
+      "required": ["id", "specialistId", "role", "content"]
+    },
+    "LibraryItem": {
+      "title": "LibraryItem",
+      "description": "Educational skin health advisory and media resource",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Item identifier" },
+        "title": { "type": "string", "description": "Resource title" },
+        "category": { "type": "string", "description": "Category topic" },
+        "type": { "type": "string", "description": "Format article, video, audio" },
+        "author": { "type": "string", "description": "Author name" },
+        "date": { "type": "string", "description": "Publication date" },
+        "readTime": { "type": "string", "description": "Estimated read or listen time" }
+      },
+      "required": ["id", "title", "type"]
+    },
+    "FormTemplate": {
+      "title": "FormTemplate",
+      "description": "Clinical intake and diagnostic form template",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Template identifier" },
+        "title": { "type": "string", "description": "Template title" },
+        "providerType": { "type": "string", "description": "Target provider category" },
+        "fields": { "type": "array", "description": "Dynamic form field schemas" }
+      },
+      "required": ["id", "title"]
+    }
+  },
+  "firestore": {
+    "/accounts/{accountId}": {
+      "schema": { "$ref": "#/entities/Account" },
+      "description": "User accounts directory synchronized across all devices"
+    },
+    "/cases/{caseId}": {
+      "schema": { "$ref": "#/entities/Case" },
+      "description": "Dermatology triage cases and clinical diagnosis reports"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": { "$ref": "#/entities/Appointment" },
+      "description": "Consultation bookings and scheduling timetable database"
+    },
+    "/adminSpecialistChats/{chatId}": {
+      "schema": { "$ref": "#/entities/AdminSpecialistChat" },
+      "description": "Two-way communication between clinical specialists and administrators"
+    },
+    "/libraryItems/{itemId}": {
+      "schema": { "$ref": "#/entities/LibraryItem" },
+      "description": "Skin health educational resources and articles"
+    },
+    "/formTemplates/{templateId}": {
+      "schema": { "$ref": "#/entities/FormTemplate" },
+      "description": "Administrative intake form builder templates"
+    }
+  }
+}

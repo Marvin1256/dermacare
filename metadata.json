@@ -1,0 +1,6 @@
+{
+  "name": "SMART HEALTH",
+  "description": "Accredited dermatology care portal providing patient self-diagnosis uploads, AI-powered triage, provider registrations, specialist dashboards, and admin whitelisting.",
+  "requestFramePermissions": ["camera", "microphone", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

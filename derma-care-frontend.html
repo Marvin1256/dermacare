@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DERMA CARE - Pure HTML & JavaScript Frontend</title>
+  <!-- Tailwind CSS Framework (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Public+Sans:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.4), 0 0 30px rgba(37, 99, 235, 0.2);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 25px rgba(56, 189, 248, 0.8), 0 0 45px rgba(37, 99, 235, 0.4);
+        transform: scale(1.05);
+      }
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.18); }
+      28% { transform: scale(1.04); }
+      42% { transform: scale(1.22); }
+      70% { transform: scale(1); }
+    }
+    .brand-emblem {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    .heartbeat-icon {
+      animation: heartbeat 2.8s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-['Inter'] min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
+
+  <!-- Background Decorative Blurs -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-teal-500/15 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="relative z-10 w-full max-w-6xl mx-auto px-4 py-6 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="brand-emblem w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 via-sky-500 to-teal-400 border border-white/60 flex items-center justify-center shadow-lg">
+        <span class="material-symbols-outlined text-2xl text-white heartbeat-icon">stethoscope</span>
+      </div>
+      <div>
+        <h1 class="font-['Public_Sans'] font-extrabold text-xl tracking-wider text-white">DERMA CARE</h1>
+        <p class="text-xs text-sky-400 font-medium">Precision Dermatology Care</p>
+      </div>
+    </div>
+
+    <!-- Language Selector Dropdown (Vanilla JS) -->
+    <div class="relative">
+      <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-slate-900 border border-slate-700 text-xs text-slate-200 rounded-xl px-3 py-2 outline-none cursor-pointer hover:border-slate-500 transition">
+        <option value="en">English (EN)</option>
+        <option value="lg">Luganda (LG)</option>
+        <option value="sw">Swahili (SW)</option>
+        <option value="fr">Français (FR)</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="relative z-10 w-full max-w-5xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center flex-grow">
+    
+    <!-- Hero / Info Column -->
+    <div class="lg:col-span-6 space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-950/80 border border-sky-500/30 text-sky-400 text-xs font-semibold">
+        <span class="material-symbols-outlined text-sm">verified</span>
+        <span>Accredited Clinical Dermatology Network</span>
+      </div>
+
+      <h2 id="hero-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+        Precision Skin Health & Certified Specialists
+      </h2>
+
+      <p id="hero-desc" class="text-slate-400 text-sm sm:text-base leading-relaxed">
+        Connect directly with board-certified dermatologists, access AI-guided lesion triage, and track clinical consultations with ease.
+      </p>
+
+      <!-- Feature Badges -->
+      <div class="grid grid-cols-2 gap-4 pt-2">
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+          <span class="material-symbols-outlined text-sky-400 text-2xl mb-1">health_and_safety</span>
+          <h4 class="font-bold text-xs text-white">Verified Specialists</h4>
+          <p class="text-[11px] text-slate-400">Board-licensed dermatology</p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+          <span class="material-symbols-outlined text-teal-400 text-2xl mb-1">lock</span>
+          <h4 class="font-bold text-xs text-white">Encrypted Data</h4>
+          <p class="text-[11px] text-slate-400">HIPAA & GDPR secure standards</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Card Column -->
+    <div class="lg:col-span-6">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl space-y-6">
+        
+        <!-- Role Tabs (Pure JS Driven) -->
+        <div class="flex p-1 bg-slate-950/80 rounded-2xl border border-slate-800">
+          <button id="tab-patient" onclick="switchRole('patient')" class="flex-1 py-2 rounded-xl text-xs font-bold transition bg-gradient-to-r from-blue-600 to-sky-600 text-white shadow">
+            Patient
+          </button>
+          <button id="tab-specialist" onclick="switchRole('specialist')" class="flex-1 py-2 rounded-xl text-xs font-bold transition text-slate-400 hover:text-white">
+            Specialist
+          </button>
+          <button id="tab-admin" onclick="switchRole('admin')" class="flex-1 py-2 rounded-xl text-xs font-bold transition text-slate-400 hover:text-white">
+            Admin
+          </button>
+        </div>
+
+        <!-- Form Heading -->
+        <div>
+          <h3 id="form-heading" class="text-xl font-bold text-white">Sign In to Derma Care</h3>
+          <p id="form-subheading" class="text-xs text-slate-400 mt-1">Access your patient appointments and medical logs</p>
+        </div>
+
+        <!-- Notification Banner -->
+        <div id="status-banner" class="hidden p-3 rounded-xl text-xs font-medium bg-emerald-950/80 border border-emerald-500/30 text-emerald-300"></div>
+
+        <!-- Login Form -->
+        <form id="login-form" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Email Address</label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3.5 top-3 text-slate-500 text-lg">mail</span>
+              <input id="input-email" type="email" required placeholder="patient@dermacare.com" class="w-full pl-10 pr-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition">
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1.5">
+              <label class="block text-xs font-semibold text-slate-300">Password</label>
+              <a href="#" onclick="alert('Password reset link sent to registered email.'); return false;" class="text-[11px] text-sky-400 hover:underline">Forgot?</a>
+            </div>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3.5 top-3 text-slate-500 text-lg">lock</span>
+              <input id="input-password" type="password" required placeholder="••••••••" class="w-full pl-10 pr-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition">
+            </div>
+          </div>
+
+          <button id="btn-submit" type="submit" class="w-full py-3 bg-gradient-to-r from-blue-600 via-sky-600 to-teal-500 hover:from-blue-500 hover:to-teal-400 text-white font-bold text-xs sm:text-sm rounded-xl shadow-lg transition duration-200 flex items-center justify-center gap-2">
+            <span>Sign In to Portal</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="relative flex items-center justify-center">
+          <div class="border-t border-slate-800 w-full"></div>
+          <span class="bg-slate-900 px-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest absolute">Or Sign Up</span>
+        </div>
+
+        <!-- Role Sign Up Cards -->
+        <div class="grid grid-cols-2 gap-3">
+          <button onclick="handleRoleSignup('patient')" class="p-3 bg-slate-800/60 hover:bg-slate-800 border border-slate-700/80 rounded-2xl text-left transition group">
+            <div class="w-8 h-8 rounded-xl bg-blue-600/30 text-sky-400 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+              <span class="material-symbols-outlined text-lg">person</span>
+            </div>
+            <h4 class="text-xs font-bold text-white">As a Patient</h4>
+            <p class="text-[10px] text-slate-400 mt-0.5">Start treatment</p>
+          </button>
+
+          <button onclick="handleRoleSignup('provider')" class="p-3 bg-slate-800/60 hover:bg-slate-800 border border-slate-700/80 rounded-2xl text-left transition group">
+            <div class="w-8 h-8 rounded-xl bg-teal-600/30 text-teal-300 flex items-center justify-center mb-2 group-hover:scale-110 transition">
+              <span class="material-symbols-outlined text-lg">medical_services</span>
+            </div>
+            <h4 class="text-xs font-bold text-white">As a Provider</h4>
+            <p class="text-[10px] text-slate-400 mt-0.5">Specialist network</p>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 w-full max-w-6xl mx-auto px-4 py-6 border-t border-slate-800 text-center text-xs text-slate-500">
+    <p>© 2026 DERMA CARE Medical Systems. All Rights Reserved. Built with HTML, CSS, & Vanilla JavaScript.</p>
+  </footer>
+
+  <!-- Pure Vanilla JavaScript Application Logic -->
+  <script>
+    // Pure JavaScript Application State
+    let currentRole = 'patient';
+    let currentLang = 'en';
+
+    const translations = {
+      en: {
+        heroTitle: "Precision Skin Health & Certified Specialists",
+        heroDesc: "Connect directly with board-certified dermatologists, access AI-guided lesion triage, and track clinical consultations with ease.",
+        signIn: "Sign In to Portal",
+        patientSub: "Access your patient appointments and medical logs",
+        specialistSub: "Manage patient queues, consultations, and prescriptions",
+        adminSub: "Control panel for hospital credential verification"
+      },
+      lg: {
+        heroTitle: "Obujjanjabi bw'Olususu Obukakasiddwa",
+        heroDesc: "Genda butereevu eri abasawo b'olususu abakugu, fumitiriza ku bulwadde bw'olususu n'obuyambi bwa AI.",
+        signIn: "Yingira mu Portal",
+        patientSub: "Laba ebikwata ku ndwadde n'okulaba kw'omusawo",
+        specialistSub: "Dukanya abalwadde n'ebiwandiiko by'eddagala",
+        adminSub: "Okukebera n'okukakasa amannya g'abasawo"
+      },
+      sw: {
+        heroTitle: "Huduma Bora ya Ngozi na Wataalamu Walioidhinishwa",
+        heroDesc: "Wasiliana moja kwa moja na madaktari bingwa wa ngozi na upate uchunguzi wa mapema wa ngozi yako.",
+        signIn: "Ingia kwenye Tovuti",
+        patientSub: "Fikia miadi yako ya mgonjwa na rekodi za matibabu",
+        specialistSub: "Simamia foleni ya wagonjwa na maagizo ya dawa",
+        adminSub: "Paneli ya uhakiki wa leseni za hospitali"
+      },
+      fr: {
+        heroTitle: "Santé Dermatologique de Précision & Spécialistes",
+        heroDesc: "Connectez-vous directement avec des dermatologues agréés et suivez vos consultations cliniques en toute sécurité.",
+        signIn: "Se Connecter",
+        patientSub: "Accédez à vos rendez-vous patients et dossiers médicaux",
+        specialistSub: "Gérez les consultations et ordonnances",
+        adminSub: "Panneau de vérification des accréditations médicales"
+      }
+    };
+
+    function switchRole(role) {
+      currentRole = role;
+      const patientTab = document.getElementById('tab-patient');
+      const specialistTab = document.getElementById('tab-specialist');
+      const adminTab = document.getElementById('tab-admin');
+      const subheading = document.getElementById('form-subheading');
+      const emailInput = document.getElementById('input-email');
+
+      const activeClass = "flex-1 py-2 rounded-xl text-xs font-bold transition bg-gradient-to-r from-blue-600 to-sky-600 text-white shadow";
+      const inactiveClass = "flex-1 py-2 rounded-xl text-xs font-bold transition text-slate-400 hover:text-white";
+
+      patientTab.className = role === 'patient' ? activeClass : inactiveClass;
+      specialistTab.className = role === 'specialist' ? activeClass : inactiveClass;
+      adminTab.className = role === 'admin' ? activeClass : inactiveClass;
+
+      const t = translations[currentLang] || translations.en;
+      if (role === 'patient') {
+        subheading.textContent = t.patientSub;
+        emailInput.placeholder = "patient@dermacare.com";
+      } else if (role === 'specialist') {
+        subheading.textContent = t.specialistSub;
+        emailInput.placeholder = "doctor@dermacare.com";
+      } else {
+        subheading.textContent = t.adminSub;
+        emailInput.placeholder = "admin@dermacare.com";
+      }
+    }
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang] || translations.en;
+      document.getElementById('hero-title').textContent = t.heroTitle;
+      document.getElementById('hero-desc').textContent = t.heroDesc;
+      document.getElementById('btn-submit').children[0].textContent = t.signIn;
+      switchRole(currentRole);
+    }
+
+    function handleLoginSubmit(event) {
+      event.preventDefault();
+      const email = document.getElementById('input-email').value.trim();
+      const password = document.getElementById('input-password').value;
+      const banner = document.getElementById('status-banner');
+
+      // Valid demo credentials check
+      const validCreds = {
+        patient: { email: 'alex@example.com', pass: 'alex123' },
+        specialist: { email: 'doctor@dermacare.com', pass: 'sarah123' },
+        admin: { email: 'admin23@gmail.com', pass: '1234567890' }
+      };
+
+      const expected = validCreds[currentRole];
+      const isCorrect = (email.toLowerCase() === expected.email.toLowerCase() && password === expected.pass);
+
+      if (isCorrect) {
+        banner.className = "p-4 rounded-2xl text-xs font-medium bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 block shadow-lg animate-fade-in";
+        banner.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-emerald-400 text-xl">check_circle</span>
+            <div>
+              <h4 class="font-bold text-sm text-emerald-200">Authenticated Successfully</h4>
+              <p class="mt-0.5 text-emerald-300/90">Welcome back, <strong>${email}</strong>! Initializing ${currentRole} workspace...</p>
+            </div>
+          </div>
+        `;
+        setTimeout(() => { banner.className = "hidden"; }, 6000);
+      } else {
+        // Red notification for wrong password or account credentials
+        banner.className = "p-4 rounded-2xl text-xs bg-red-950/70 border-2 border-red-500/70 text-red-200 block shadow-xl space-y-3 animate-fade-in";
+        banner.innerHTML = `
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center shrink-0 mt-0.5">
+              <span class="material-symbols-outlined text-xl">lock_reset</span>
+            </div>
+            <div class="flex-1 space-y-1">
+              <h4 class="font-extrabold text-sm text-red-100 flex items-center gap-1.5">
+                Wrong Password or Credentials Entered
+              </h4>
+              <p class="text-xs text-red-300 leading-relaxed font-normal">
+                The email or password you entered is incorrect. If you do not have an account yet, you should create an account below. If you forgot your password, please contact the administrator.
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-2 border-t border-red-500/30 flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onclick="handleRoleSignup('${currentRole === 'specialist' ? 'provider' : 'patient'}')"
+              class="px-3.5 py-1.5 bg-red-600 hover:bg-red-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow"
+            >
+              <span class="material-symbols-outlined text-sm">person_add</span>
+              Create an Account
+            </button>
+
+            <button
+              type="button"
+              onclick="openContactAdmin()"
+              class="px-3.5 py-1.5 bg-slate-900 border border-red-500/50 hover:bg-slate-800 text-red-200 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow"
+            >
+              <span class="material-symbols-outlined text-sm">support_agent</span>
+              Contact Admin (Forgot Password)
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function openContactAdmin() {
+      alert("DERMA CARE Administration Desk:\n\n• Administrator Email: admin23@gmail.com\n• Support Hotline: +256 701 983247\n• Desk: 24/7 Clinical & Account Recovery\n\nDemo Logins:\n- Patient: alex@example.com / alex123\n- Doctor: doctor@dermacare.com / sarah123\n- Admin: admin23@gmail.com / 1234567890");
+    }
+
+    function handleRoleSignup(roleType) {
+      alert(`Registration wizard opened for: As a ${roleType === 'patient' ? 'Patient' : 'Healthcare Provider'}. Redirecting to credential onboarding form...`);
+    }
+  </script>
+</body>
+</html>

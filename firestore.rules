@@ -1,0 +1,92 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    // Accounts Collection: multi-device user credentials and practitioner profiles
+    match /accounts/{accountId} {
+      allow get: if isValidId(accountId);
+      allow list: if true;
+      allow create: if isValidId(accountId) 
+        && incoming().id is string
+        && incoming().role is string;
+      allow update: if isValidId(accountId);
+      allow delete: if isValidId(accountId);
+    }
+
+    // Cases Collection: dermatology cases, lesion photo URLs, AI triage summaries, and prescriptions
+    match /cases/{caseId} {
+      allow get: if isValidId(caseId);
+      allow list: if true;
+      allow create: if isValidId(caseId)
+        && incoming().id is string
+        && incoming().patientId is string
+        && incoming().status is string;
+      allow update: if isValidId(caseId);
+      allow delete: if isValidId(caseId);
+    }
+
+    // Appointments Collection: consultation timetable, status, reminders, and outcome notes
+    match /appointments/{appointmentId} {
+      allow get: if isValidId(appointmentId);
+      allow list: if true;
+      allow create: if isValidId(appointmentId)
+        && incoming().id is string
+        && incoming().patientId is string
+        && incoming().date is string
+        && incoming().time is string
+        && incoming().status is string;
+      allow update: if isValidId(appointmentId);
+      allow delete: if isValidId(appointmentId);
+    }
+
+    // AdminSpecialistChats Collection: communications between specialists and administration desk
+    match /adminSpecialistChats/{chatId} {
+      allow get: if isValidId(chatId);
+      allow list: if true;
+      allow create: if isValidId(chatId)
+        && incoming().id is string
+        && incoming().specialistId is string
+        && incoming().role is string
+        && incoming().content is string;
+      allow update: if isValidId(chatId);
+      allow delete: if isValidId(chatId);
+    }
+
+    // LibraryItems Collection: skin health advisories, articles, and educational media
+    match /libraryItems/{itemId} {
+      allow get: if isValidId(itemId);
+      allow list: if true;
+      allow create: if isValidId(itemId) && incoming().id is string;
+      allow update: if isValidId(itemId);
+      allow delete: if isValidId(itemId);
+    }
+
+    // FormTemplates Collection: administrative intake and clinical diagnosis templates
+    match /formTemplates/{templateId} {
+      allow get: if isValidId(templateId);
+      allow list: if true;
+      allow create: if isValidId(templateId) && incoming().id is string;
+      allow update: if isValidId(templateId);
+      allow delete: if isValidId(templateId);
+    }
+
+    // Connection testing endpoint for health checks
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+
+    // Default safety deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

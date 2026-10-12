@@ -1,0 +1,791 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #315B7D;
+  --primary-dark: #24465F;
+  --primary-light: #E8F1F7;
+
+  --lavender: #EEEAF8;
+  --soft-blue: #E5F2F8;
+  --soft-pink: #F7E9E7;
+  --cream: #F7F1E8;
+
+  --background: #F5F7FA;
+  --surface: #FFFFFF;
+
+  --text-primary: #263746;
+  --text-secondary: #667685;
+  --text-muted: #8A98A5;
+
+  --border: rgba(70, 90, 110, 0.14);
+}
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-mono: "Inter", monospace;
+  
+  --color-primary: #315B7D;
+  --color-primary-dark: #24465F;
+  --color-primary-light: #E8F1F7;
+  
+  --color-lavender: #EEEAF8;
+  --color-soft-blue: #E5F2F8;
+  --color-soft-pink: #F7E9E7;
+  --color-cream: #F7F1E8;
+
+  --color-background: #F5F7FA;
+  --color-surface: #FFFFFF;
+
+  --color-text-primary: #263746;
+  --color-text-secondary: #667685;
+  --color-text-muted: #8A98A5;
+
+  --color-border: rgba(70, 90, 110, 0.14);
+}
+
+/* Material symbols utility styling */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.fill {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Scrollbar behaviors */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+}
+
+/* ==========================================================================
+   DERMA CARE DESIGN SYSTEM & REUSABLE UTILITIES
+   ========================================================================== */
+
+/* Soft dimensional background with quiet ambient light diffusion */
+.derma-canvas,
+.glass-ambient-backdrop {
+  background-color: var(--background) !important;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(229, 242, 248, 0.7) 0px, transparent 40%),
+    radial-gradient(at 100% 0%, rgba(238, 234, 248, 0.6) 0px, transparent 45%),
+    radial-gradient(at 50% 50%, rgba(255, 255, 255, 0.8) 0px, transparent 60%),
+    radial-gradient(at 100% 100%, rgba(247, 241, 232, 0.6) 0px, transparent 45%),
+    radial-gradient(at 0% 100%, rgba(247, 233, 231, 0.5) 0px, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Reusable Derma Care Card */
+.derma-card {
+  background-color: var(--surface) !important;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 30px rgba(40, 60, 80, 0.05);
+  transition: all 0.2s ease-out;
+}
+
+.derma-card:hover {
+  border-color: rgba(49, 91, 125, 0.25);
+}
+
+/* Subtle glassmorphism card */
+.derma-card-glass,
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 8px 30px rgba(40, 60, 80, 0.05);
+}
+
+.derma-card-elevated,
+.glass-panel-elevated {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 16px 40px -10px rgba(40, 60, 80, 0.08);
+}
+
+/* Header */
+.derma-header,
+.glass-header {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border) !important;
+  box-shadow: 0 2px 15px rgba(40, 60, 80, 0.03);
+}
+
+/* Buttons */
+.derma-btn-primary,
+.glass-button-primary {
+  background: var(--primary) !important;
+  color: #FFFFFF !important;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease-out;
+  box-shadow: 0 4px 14px rgba(49, 91, 125, 0.25);
+  cursor: pointer;
+}
+
+.derma-btn-primary:hover,
+.glass-button-primary:hover {
+  background: var(--primary-dark) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(49, 91, 125, 0.35);
+}
+
+.derma-btn-primary:active,
+.glass-button-primary:active {
+  transform: translateY(0);
+}
+
+.derma-btn-secondary,
+.glass-button-secondary {
+  background: #FFFFFF !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease-out;
+  box-shadow: 0 2px 8px rgba(40, 60, 80, 0.04);
+  cursor: pointer;
+}
+
+.derma-btn-secondary:hover,
+.glass-button-secondary:hover {
+  background: var(--soft-blue) !important;
+  border-color: rgba(49, 91, 125, 0.25) !important;
+  color: var(--primary-dark) !important;
+  transform: translateY(-1px);
+}
+
+/* Badges */
+.derma-badge-lavender {
+  background-color: var(--lavender);
+  color: #4A3E72;
+  border: 1px solid rgba(74, 62, 114, 0.12);
+}
+
+.derma-badge-blue {
+  background-color: var(--soft-blue);
+  color: var(--primary);
+  border: 1px solid rgba(49, 91, 125, 0.15);
+}
+
+.derma-badge-pink {
+  background-color: var(--soft-pink);
+  color: #8C433A;
+  border: 1px solid rgba(140, 67, 58, 0.15);
+}
+
+.derma-badge-cream {
+  background-color: var(--cream);
+  color: #7A5C28;
+  border: 1px solid rgba(122, 92, 40, 0.15);
+}
+
+/* Form Controls */
+.derma-input {
+  background-color: #FFFFFF !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px;
+  padding: 0.65rem 0.9rem;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  transition: all 0.2s ease-out;
+}
+
+.derma-input:focus {
+  outline: none;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(49, 91, 125, 0.12) !important;
+}
+
+/* Liquid Glass Encouragement Card */
+.liquid-glass-card {
+  background: linear-gradient(135deg, rgba(238, 234, 248, 0.85) 0%, rgba(229, 242, 248, 0.9) 50%, rgba(247, 241, 232, 0.85) 100%) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 10px 30px rgba(49, 91, 125, 0.08);
+}
+
+.liquid-glass-pill {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 10px rgba(49, 91, 125, 0.06);
+}
+
+@keyframes liquid-sheen {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  50%, 100% { transform: translateX(250%) skewX(-20deg); }
+}
+
+.animate-liquid-sheen {
+  animation: liquid-sheen 6s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ambient macOS / Apple Sonoma canvas backdrop for patient portal */
+.derma-canvas-backdrop {
+  background-color: #f6f8fc;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(205, 230, 255, 0.65) 0px, transparent 45%),
+    radial-gradient(at 100% 15%, rgba(254, 222, 210, 0.55) 0px, transparent 40%),
+    radial-gradient(at 50% 40%, rgba(255, 255, 255, 0.7) 0px, transparent 60%),
+    radial-gradient(at 90% 85%, rgba(254, 230, 210, 0.45) 0px, transparent 45%),
+    radial-gradient(at 10% 85%, rgba(220, 238, 255, 0.4) 0px, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Glass Panels & Containers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), inset 0 1px 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.glass-panel-elevated {
+  background: rgba(255, 255, 255, 0.84) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.08), inset 0 1px 2px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Glass Navigation & Sticky Headers */
+.glass-header {
+  background: rgba(255, 255, 255, 0.78) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.75) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), inset 0 -1px 0 0 rgba(255, 255, 255, 0.6);
+}
+
+.glass-nav-tabs,
+.glass-toolbar {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.06), inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Glass Slide Panels, Sidebars & Drawers */
+.glass-slide-panel,
+.glass-sidebar,
+.glass-drawer {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-right: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 10px 0 32px -8px rgba(15, 23, 42, 0.08), inset 1px 0 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Glass Overlays, Modals & Floating Layers */
+.glass-overlay-backdrop {
+  background: rgba(10, 15, 29, 0.6) !important;
+  backdrop-filter: blur(18px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+}
+
+.glass-overlay-card,
+.glass-modal {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.92) !important;
+  box-shadow: 
+    0 25px 50px -12px rgba(15, 23, 42, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.85) inset,
+    0 8px 24px -4px rgba(37, 99, 235, 0.1) !important;
+}
+
+.glass-floating-menu {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.88) !important;
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.12), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.glass-viewfinder-overlay {
+  background: rgba(10, 15, 29, 0.82) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5), inset 0 1px 2px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Glass Content Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.glass-card-interactive {
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-interactive:hover {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.95) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -8px rgba(37, 99, 235, 0.12), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Form Controls & Inputs */
+.glass-input {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(37, 99, 235, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), inset 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+}
+
+/* Glass Buttons */
+.glass-button-primary {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.92) 0%, rgba(79, 70, 229, 0.92) 100%) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  color: #ffffff !important;
+  transition: all 0.2s ease;
+}
+
+.glass-button-primary:hover {
+  background: linear-gradient(135deg, rgba(29, 78, 216, 0.98) 0%, rgba(67, 56, 202, 0.98) 100%) !important;
+  box-shadow: 0 12px 28px -4px rgba(37, 99, 235, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transform: translateY(-1px);
+}
+
+.glass-button-secondary {
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  transition: all 0.2s ease;
+}
+
+.glass-button-secondary:hover {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 6px 18px -2px rgba(15, 23, 42, 0.08);
+}
+
+/* Glass Badges & Accents */
+.glass-badge-blue {
+  background: rgba(219, 234, 254, 0.6) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(147, 197, 253, 0.6) !important;
+  color: #1d4ed8 !important;
+}
+
+.glass-badge-emerald {
+  background: rgba(209, 250, 229, 0.6) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(110, 231, 183, 0.6) !important;
+  color: #047857 !important;
+}
+
+.glass-badge-amber {
+  background: rgba(254, 243, 199, 0.6) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(252, 211, 77, 0.6) !important;
+  color: #b45309 !important;
+}
+
+.glass-badge-purple {
+  background: rgba(243, 232, 255, 0.6) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(216, 180, 254, 0.6) !important;
+  color: #7e22ce !important;
+}
+
+/* ==========================================================================
+   LIQUID GLASS UI SYSTEM
+   ========================================================================== */
+.liquid-glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(240, 253, 250, 0.62) 35%, rgba(204, 251, 241, 0.45) 70%, rgba(224, 242, 254, 0.72) 100%) !important;
+  backdrop-filter: blur(28px) saturate(210%) brightness(105%);
+  -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(105%);
+  border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 
+    0 24px 48px -12px rgba(13, 148, 136, 0.22),
+    0 10px 24px -4px rgba(15, 23, 42, 0.06),
+    inset 0 2px 4px 0 rgba(255, 255, 255, 0.98),
+    inset 0 -2px 4px 0 rgba(20, 184, 166, 0.15),
+    inset 1.5px 0 2px 0 rgba(255, 255, 255, 0.85) !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(240, 253, 250, 0.75) 35%, rgba(204, 251, 241, 0.58) 70%, rgba(224, 242, 254, 0.82) 100%) !important;
+  border-color: rgba(255, 255, 255, 1) !important;
+  transform: translateY(-3px) scale(1.015);
+  box-shadow: 
+    0 30px 60px -12px rgba(13, 148, 136, 0.28),
+    0 14px 28px -4px rgba(15, 23, 42, 0.09),
+    inset 0 2px 5px 0 rgba(255, 255, 255, 1),
+    inset 0 -2px 5px 0 rgba(20, 184, 166, 0.22),
+    inset 2px 0 3px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+.liquid-glass-pill {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.65) 100%) !important;
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 4px 12px -2px rgba(13, 148, 136, 0.18), inset 0 1px 1.5px 0 rgba(255, 255, 255, 1);
+}
+
+.liquid-glass-orb {
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9) 0%, rgba(204, 251, 241, 0.55) 45%, rgba(45, 212, 191, 0.25) 85%, transparent 100%);
+  filter: blur(12px);
+}
+
+@keyframes liquid-shimmer {
+  0% {
+    transform: translateX(-150%) skewX(-15deg);
+  }
+  50%, 100% {
+    transform: translateX(250%) skewX(-15deg);
+  }
+}
+
+.animate-liquid-sheen {
+  animation: liquid-shimmer 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes emerald-pulse-glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(16, 185, 129, 0.7),
+      0 0 40px rgba(5, 150, 105, 0.4),
+      inset 0 1.5px 2px rgba(255, 255, 255, 0.85),
+      inset 0 -1.5px 2px rgba(6, 78, 59, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 
+      0 0 32px rgba(16, 185, 129, 0.95),
+      0 0 60px rgba(52, 211, 153, 0.6),
+      inset 0 2px 3px rgba(255, 255, 255, 0.95),
+      inset 0 -2px 3px rgba(6, 78, 59, 0.65);
+    transform: scale(1.05);
+  }
+}
+
+.animate-emerald-glow {
+  animation: emerald-pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes logo-float-icon {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-1.5px) scale(1.08);
+  }
+}
+
+.animate-logo-icon {
+  animation: logo-float-icon 3s ease-in-out infinite;
+}
+
+/* Dark Mode / Specialist / Admin Glass Styles */
+.glass-dark-ambient-backdrop {
+  background-color: #0b0f19;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(56, 189, 248, 0.16) 0px, transparent 40%),
+    radial-gradient(at 85% 18%, rgba(99, 102, 241, 0.18) 0px, transparent 45%),
+    radial-gradient(at 50% 55%, rgba(37, 99, 235, 0.12) 0px, transparent 50%),
+    radial-gradient(at 80% 85%, rgba(14, 165, 233, 0.14) 0px, transparent 40%);
+  background-attachment: fixed;
+}
+
+.glass-dark-panel {
+  background: rgba(15, 23, 42, 0.75) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 16px 36px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-dark-header {
+  background: rgba(15, 23, 42, 0.82) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.25);
+}
+
+.glass-dark-card {
+  background: rgba(30, 41, 59, 0.65) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark-input {
+  background: rgba(15, 23, 42, 0.65) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #f8fafc !important;
+}
+
+.glass-dark-input:focus {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border-color: rgba(56, 189, 248, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+}
+
+/* Derma Care Medical Animations */
+@keyframes medical-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.4), 0 0 32px rgba(37, 99, 235, 0.25), inset 0 0 12px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 28px rgba(56, 189, 248, 0.75), 0 0 52px rgba(37, 99, 235, 0.45), inset 0 0 18px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes heartbeat-icon {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.7));
+  }
+  14% {
+    transform: scale(1.18);
+    filter: drop-shadow(0 0 14px rgba(56, 189, 248, 1));
+  }
+  28% {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.75));
+  }
+  42% {
+    transform: scale(1.22);
+    filter: drop-shadow(0 0 16px rgba(125, 211, 252, 1));
+  }
+  70% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.7));
+  }
+}
+
+/* Dermatology Clinical Scanning Animations */
+@keyframes derma-scanline {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 98%;
+    opacity: 0;
+  }
+}
+
+.animate-derma-scan {
+  animation: derma-scanline 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes derma-radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-derma-radar {
+  animation: derma-radar-sweep 4s linear infinite;
+}
+
+@keyframes derma-lens-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+.animate-derma-lens {
+  animation: derma-lens-pulse 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   GLOBAL GLASSMORPHIC ENHANCEMENT ACROSS ENTIRE APPLICATION
+   ========================================================================== */
+
+/* Universal card enhancement: translucent frosted background, specular borders */
+.bg-white:not(button):not(input):not([class*="bg-white/"]):not([class*="text-"]):not(span) {
+  background-color: rgba(255, 255, 255, 0.76) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Modals & Dialog overlays: deep blur background + elevated glass card */
+.fixed.inset-0.z-50 {
+  background-color: rgba(15, 23, 42, 0.55) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+.fixed.inset-0.z-50 > div {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Subtle frosted glass borders for outline variants */
+.border-outline-variant,
+.border-slate-200 {
+  border-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Glass input fields across portals */
+input[type="text"]:not([class*="glass-"]):not([class*="bg-transparent"]),
+input[type="email"]:not([class*="glass-"]):not([class*="bg-transparent"]),
+input[type="password"]:not([class*="glass-"]):not([class*="bg-transparent"]),
+input[type="tel"]:not([class*="glass-"]):not([class*="bg-transparent"]),
+input[type="search"]:not([class*="glass-"]):not([class*="bg-transparent"]),
+input[type="date"]:not([class*="glass-"]):not([class*="bg-transparent"]),
+select:not([class*="glass-"]):not([class*="bg-transparent"]),
+textarea:not([class*="glass-"]):not([class*="bg-transparent"]) {
+  background-color: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+input[type="text"]:focus:not([class*="glass-"]),
+input[type="email"]:focus:not([class*="glass-"]),
+input[type="password"]:focus:not([class*="glass-"]),
+input[type="tel"]:focus:not([class*="glass-"]),
+input[type="search"]:focus:not([class*="glass-"]),
+input[type="date"]:focus:not([class*="glass-"]),
+select:focus:not([class*="glass-"]),
+textarea:focus:not([class*="glass-"]) {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(37, 99, 235, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}
+
+/* Glass table headers and rows */
+table thead th {
+  background-color: rgba(241, 245, 249, 0.6) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ==========================================================================
+   ISOLATED SCROLL & OVERSCROLL PREVENTION (TABS & MODALS UX FIX)
+   Prevents background bleed/scrolling when scrolling nested tabs, sidebars, or dialogs.
+   ========================================================================== */
+
+.tabs-scroll-isolated,
+.scroll-isolated {
+  overscroll-behavior: contain !important;
+  overscroll-behavior-x: contain !important;
+  overscroll-behavior-y: contain !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabs-horizontal-scroll {
+  overscroll-behavior: contain !important;
+  overscroll-behavior-x: contain !important;
+  overscroll-behavior-y: none !important;
+  touch-action: pan-x pinch-zoom;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-scroll-isolated {
+  overscroll-behavior: contain !important;
+  overscroll-behavior-y: contain !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+
